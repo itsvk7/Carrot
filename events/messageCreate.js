@@ -1,15 +1,20 @@
+import config from "../config.js";
+
 export default {
   name: "messageCreate",
 
   async run(client, message) {
     if (message.author.bot) return;
 
-    const prefix = "c,";
+    const prefix = config.prefix;
 
     if (message.content === `<@${client.user.id}>`) {
-      return message.reply(
-        `😁 Olá ${message.author}, sou um simples bot do discord.`,
-      );
+      return message.reply({
+        content: `# <:carrot:1521258947024257204> › Me chamou?
+> Olá, ${message.author}! Eu me chamo **Carrot** e meu prefixo é \`c,\`
+-# ㅤ╰ Para saber mais sobre mim use \`c,help\`.`,
+        allowedMentions: { repliedUser: false },
+      });
     }
 
     if (!message.content.startsWith(prefix)) return;
