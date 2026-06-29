@@ -5,9 +5,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const client = new Client({
-  intents: ["Guilds", "GuildMessages", "MessageContent"],
-});
+const client = new Client({ intents: 3276799 });
 
 client.commands = new Collection();
 client.database = {
@@ -19,17 +17,19 @@ client.login(process.env.TOKEN);
 
 export default client;
 
-for (const subFolder of fs.readdirSync("commands")) {
-  for (const cmd of fs.readdirSync(`commands/${subFolder}`)) {
-    const { default: command } = await import(`./commands/${subFolder}/${cmd}`);
+for (const subFolder of fs.readdirSync("./src/discord/commands/")) {
+  for (const cmd of fs.readdirSync(`./src/discord/commands/${subFolder}`)) {
+    const { default: command } = await import(
+      `./src/discord/commands/${subFolder}/${cmd}`
+    );
 
     client.commands.set(command.name, command);
     console.log(`${command.name} Carregado!`);
   }
 }
 
-for (const event of fs.readdirSync("events")) {
-  const { default: eventData } = await import(`./events/${event}`);
+for (const event of fs.readdirSync("./src/discord/events/")) {
+  const { default: eventData } = await import(`./src/discord/events/${event}`);
 
   client.on(eventData.name, (...args) => eventData.run(client, ...args));
 }
