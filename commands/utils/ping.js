@@ -1,7 +1,9 @@
-module.exports = {
-    name: 'ping',
-    aliases: ['latencia'],
-    run: async(client, message, args) => {
-        message.reply(`🏓 | Minha latencia é de \`${client.ws.ping}ms\``)
-    }
-}
+export default {
+  name: "ping",
+  aliases: ["latencia"],
+
+  async run(client, message, args) {
+    message.reply(`🏓 | Minha latência é de \`${client.ws.ping}ms\``);
+  },
+};
+

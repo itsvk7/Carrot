@@ -1,6 +1,6 @@
-module.exports = {
-    name: 'ready',
-    run: async() => {
-        console.log('[ Bot online ]')
-    }
-}
+export default {
+  name: "clientReady",
+  run: async () => {
+    console.log("[ Bot online ]");
+  },
+};

@@ -1,27 +1,35 @@
-const { Client, Collection } = require('discord.js')
-const SimplDB = require('simpl.db')
+import { Client, Collection } from "discord.js";
+import TwinDB from "twin-db";
+import fs from "fs";
+import dotenv from "dotenv";
 
-const fs = require('fs')
+dotenv.config();
 
-require('dotenv').config()
-const client = new Client({intents: 3276799})
+const client = new Client({
+  intents: ["Guilds", "GuildMessages", "MessageContent"],
+});
 
-client.commands = new Collection()
-client.database = new SimplDB()
+client.commands = new Collection();
+client.database = {
+  users: new TwinDB("users"),
+  guilds: new TwinDB("guilds"),
+};
 
-client.login(process.env.TOKEN)
+client.login(process.env.TOKEN);
 
-module.exports = client
+export default client;
 
-fs.readdirSync('commands').forEach(subFolder => {
-    fs.readdirSync(`commands/${subFolder}`).forEach(cmd => {
-        const cmds = require(`./commands/${subFolder}/${cmd}`)
-        client.commands.set(cmds.name, cmds)
-        console.log(`${cmds.name} Carregado!`)
-    })
-})
+for (const subFolder of fs.readdirSync("commands")) {
+  for (const cmd of fs.readdirSync(`commands/${subFolder}`)) {
+    const { default: command } = await import(`./commands/${subFolder}/${cmd}`);
 
-fs.readdirSync('events').forEach(event => {
-    const eventData = require(`./events/${event}`)
-    client.on(eventData.name, eventData.run)
-})
+    client.commands.set(command.name, command);
+    console.log(`${command.name} Carregado!`);
+  }
+}
+
+for (const event of fs.readdirSync("events")) {
+  const { default: eventData } = await import(`./events/${event}`);
+
+  client.on(eventData.name, (...args) => eventData.run(client, ...args));
+}
