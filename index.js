@@ -24,7 +24,7 @@ for (const subFolder of fs.readdirSync("./src/discord/commands/")) {
     );
 
     client.commands.set(command.name, command);
-    console.log(`${command.name} Carregado!`);
+    console.log(`${command.name} — [CARREGADO]`);
   }
 }
 
@@ -32,4 +32,5 @@ for (const event of fs.readdirSync("./src/discord/events/")) {
   const { default: eventData } = await import(`./src/discord/events/${event}`);
 
   client.on(eventData.name, (...args) => eventData.run(client, ...args));
+  console.log(`${eventData.name} — [CARREGADO]`);
 }
