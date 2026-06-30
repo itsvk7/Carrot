@@ -8,6 +8,7 @@ dotenv.config();
 const client = new Client({ intents: 3276799 });
 
 client.commands = new Collection();
+client.developers = ["1208958778243031060"];
 client.database = {
   users: new TwinDB("users"),
   guilds: new TwinDB("guilds"),

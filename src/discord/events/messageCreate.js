@@ -1,4 +1,4 @@
-import config from "../../constants/config.js";
+import config from "../../utils/config.js";
 
 export default {
   name: "messageCreate",
@@ -13,10 +13,11 @@ export default {
 
     if (message.content === `<@${client.user.id}>`) {
       return message.reply({
-        content: `# <:carrot:1521258947024257204> › Me chamou?
+        content: `## <:carrot:1521306506413211759> › Me chamou?
 > Olá, ${user}! Eu me chamo **Carrot** e meu prefixo é \`c,\`
 -# ㅤ╰ Para saber mais sobre mim use \`c,help\`.`,
         allowedMentions: { repliedUser: false },
+        i,
       });
     }
 
@@ -33,10 +34,12 @@ export default {
 
     if (!userDB?.registro) {
       if (cmd.name !== "registrar")
-        return message.reply(`# <:warN:1521297914964480171> › [AVISO]
+        return message.reply(`## <:warN:1521297914964480171> › [AVISO]
 Você não está registrado no meu banco de dados, portanto não pode usar meus comandos.
 > -# ╰ Use: \`c,registrar\` para se registrar.`);
     }
+
+    if (cmd.devOnly && !client.developers.includes(user.id)) return;
 
     if (cmd) return cmd.run(client, message, args);
   },

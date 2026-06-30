@@ -1,8 +1,21 @@
 {
   "1208958778243031060": {
-    "registro": true
+    "registro": true,
+    "cooldowns": {
+      "daily": 1782820371921
+    },
+    "cenouras": 5890
   },
   "1315730837152731239": {
+    "registro": true
+  },
+  "1434365469057351738": {
+    "registro": true,
+    "cooldowns": {
+      "daily": 1782782890983
+    }
+  },
+  "1318285413957238819": {
     "registro": true
   }
 }

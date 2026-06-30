@@ -1,0 +1,8 @@
+{
+  "warn": { "emoji": "<:warN:1521297914964480171>", "message": "[AVISO]" },
+  "error": { "emoji": "<:error:1521300039249432780>", "message": "[ERRO]" },
+  "cooldown": {
+    "emoji": "<:clock:1521481326329462974>",
+    "message": "[COOLDOWN]"
+  }
+}
