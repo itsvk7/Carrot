@@ -1,0 +1,25 @@
+{
+  "name": "carrot",
+  "version": "1.0.0",
+  "description": "Um bot de economia desenvolvido em Discord.js",
+  "homepage": "https://github.com/itsvk7/Carrot#readme",
+  "bugs": {
+    "url": "https://github.com/itsvk7/Carrot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsvk7/Carrot.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "discord.js": "^14.27.0",
+    "dotenv": "^17.4.2",
+    "strcolorize": "^1.1.8"
+  }
+}
