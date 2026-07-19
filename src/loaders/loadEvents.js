@@ -12,7 +12,7 @@ export async function loadEvents(client) {
   for (const eventFile of events) {
     const { default: event } = await import(`../events/${eventFile}`);
 
-    if (!event) return;
+    if (!event) continue;
 
     client.on(event.name, (...args) => {
       event.run(client, ...args);

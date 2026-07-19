@@ -1,27 +1,26 @@
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export async function loadInteractions(client) {
   const interactionsPath = path.resolve(__dirname, "../components");
-  const folders = fs.readdirSync(interactionsPath);
 
-  for (const subFolders of folders) {
-    const componentsFiles = fs.readdirSync(
-      path.resolve(interactionsPath, subFolders),
-    );
+  const files = fs.readdirSync(interactionsPath, {
+    recursive: true,
+  });
 
-    for (const componentFile of componentsFiles) {
-      const { default: component } = await import(
-        `../components/${subFolders}/${componentFile}`
-      );
+  for (const file of files) {
+    if (!file.endsWith(".js")) continue;
 
-      if (!component) return;
+    const filePath = path.join(interactionsPath, file);
 
-      client.components.set(component.customID, component);
-    }
+    const { default: component } = await import(pathToFileURL(filePath).href);
+
+    if (!component) continue;
+
+    client.components.set(component.customID, component);
   }
 }
