@@ -1,7 +1,7 @@
-import { event } from "../factories/event.js";
+import { createEvent } from "../factories/createEvent.js";
 import { MessageFlags } from "discord.js";
 
-export default event({
+export default createEvent({
   name: "interactionCreate",
   async run(client, interaction) {
     if (

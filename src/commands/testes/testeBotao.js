@@ -1,7 +1,7 @@
-import { command } from "../../factories/command.js";
+import { createCommand } from "../../factories/createCommand.js";
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 
-export default command({
+export default createCommand({
   name: "teste",
   authorOnly: true,
   async run(client, message) {

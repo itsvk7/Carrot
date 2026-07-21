@@ -1,8 +1,8 @@
-import { command } from "../../factories/command.js";
+import { createCommand } from "../../factories/createCommand.js";
 
-export default command({
+export default createCommand({
   name: "ping",
-  aliases: ["pong", "latencia"],
+  aliases: ["p", "latencia"],
   description: "Mostra a latência do bot",
   async run(client, message) {
     const latency = client.ws.ping;

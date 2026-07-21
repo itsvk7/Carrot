@@ -1,4 +1,4 @@
-export function command({
+export function createCommand({
   name,
   aliases = [],
   description = "",

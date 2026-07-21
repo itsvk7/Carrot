@@ -1,6 +1,6 @@
-import { event } from "../factories/event.js";
+import { createEvent } from "../factories/createEvent.js";
 
-export default event({
+export default createEvent({
   name: "messageCreate",
   async run(client, message) {
     const user = message.author;

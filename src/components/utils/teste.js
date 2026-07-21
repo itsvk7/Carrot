@@ -1,6 +1,6 @@
-import { interaction } from "../../factories/interaction.js";
+import { createComponent } from "../../factories/createComponent.js";
 
-export default interaction({
+export default createComponent({
   customID: "teste",
   async run(client, interaction) {
     await interaction.update({

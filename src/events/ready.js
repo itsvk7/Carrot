@@ -1,7 +1,7 @@
-import { event } from "../factories/event.js";
+import { createEvent } from "../factories/createEvent.js";
 import colorize from "strcolorize";
 
-export default event({
+export default createEvent({
   name: "clientReady",
   run(client, message) {
     console.log(colorize("#bold yellow[Carrot] — Online!"));

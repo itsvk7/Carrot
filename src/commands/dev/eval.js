@@ -1,7 +1,7 @@
 import { inspect } from "node:util";
-import { command } from "../../factories/command.js";
+import { createCommand } from "../../factories/createCommand.js";
 
-export default command({
+export default createCommand({
   name: "eval",
   aliases: ["ev", "e"],
   devOnly: true,
