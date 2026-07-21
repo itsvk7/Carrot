@@ -1,5 +1,10 @@
 import { createCommand } from "../../factories/createCommand.js";
-import { SectionBuilder, MessageFlags } from "discord.js";
+import {
+  SectionBuilder,
+  ContainerBuilder,
+  MessageFlags,
+  TextDisplayBuilder,
+} from "discord.js";
 
 export default createCommand({
   name: "ascender",
@@ -9,19 +14,21 @@ export default createCommand({
 
     if (userDB?.ascended) return message.reply("já ascendeu já puto");
 
-    const section = new SectionBuilder()
-      .addTextDisplayComponents((textDisplay) =>
-        textDisplay.setContent(`# Perfil de ${user}`),
-      )
-      .setThumbnailAccessory((thumbnail) =>
-        thumbnail
-          .setDescription("Imagem de perfil")
-          .setURL(user.displayAvatarURL()),
-      );
+    const title = new TextDisplayBuilder({
+      content: "# <:hat:1529196576587644948> — Ascensão",
+    });
+
+    const section = new SectionBuilder({
+      components: [title],
+    });
+
+    const container = new ContainerBuilder({
+      components: [section],
+    });
 
     await message.reply({
       flags: MessageFlags.IsComponentsV2,
-      components: [section],
+      components: [container],
     });
   },
 });
