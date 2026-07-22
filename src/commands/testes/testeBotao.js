@@ -1,20 +1,21 @@
 import { createCommand } from "../../factories/createCommand.js";
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
+import { b } from "../../builders/index.js";
+import { MessageFlags } from "discord.js";
 
 export default createCommand({
   name: "teste",
   authorOnly: true,
   async run(client, message) {
-    const button = new ButtonBuilder()
-      .setCustomId(`teste`)
-      .setLabel("Clique em mim")
-      .setStyle(ButtonStyle.Primary);
-
-    const row = new ActionRowBuilder().addComponents(button);
+    const button = b.createButton({
+      id: "teste",
+      label: "Clique em mim",
+      style: "Primary",
+    });
+    const phrase = b.createText("# Testando Function");
 
     await message.reply({
-      content: "Teste da handler de components:",
-      components: [row],
+      components: [button, phrase],
+      flags: MessageFlags.IsComponentsV2,
     });
   },
 });
