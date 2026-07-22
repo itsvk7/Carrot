@@ -21,11 +21,11 @@ export function createMenu({
           .setLabel(option.label);
 
         if (option.description) {
-          newOption.setDescription(option.description ?? "");
+          newOption.setDescription(option.description);
         }
 
         if (option.emoji) {
-          newOption.setEmoji(option.emoji ?? undefined);
+          newOption.setEmoji(option.emoji);
         }
 
         return newOption;
@@ -33,5 +33,5 @@ export function createMenu({
     );
   }
 
-  return new ActionRowBuilder().addComponents(menu);
+  return menu;
 }

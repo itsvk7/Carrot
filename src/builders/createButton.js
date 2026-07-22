@@ -14,5 +14,5 @@ export function createButton({ id, label, emoji, disabled = false, style }) {
     button.setDisabled(disabled);
   }
 
-  return new ActionRowBuilder().addComponents(button);
+  return button;
 }
